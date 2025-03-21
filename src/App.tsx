@@ -17,6 +17,18 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
+  //Function testMessage
+  async function handleTest() {
+    try {
+      const {data: testRes} = await client.queries.testMessage({
+        name: 'Test public auth',
+      });
+      console.log("Success: ",testRes);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <main>
       <h1>My todos</h1>
@@ -26,6 +38,7 @@ function App() {
           <li key={todo.id}>{todo.content}</li>
         ))}
       </ul>
+      
       <div>
         🥳 App successfully hosted. Try creating a new todo.
         <br />
@@ -33,6 +46,8 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>
+
+      <button onClick={handleTest}>Test Function</button>
     </main>
   );
 }

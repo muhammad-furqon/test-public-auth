@@ -1,4 +1,5 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+import { testMessage } from "../functions/testMessage/resource";
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
@@ -11,6 +12,15 @@ const schema = a.schema({
     .model({
       content: a.string(),
     })
+    .authorization((allow) => [allow.guest()]),
+  //Test message function
+  testMessage: a
+    .query()
+    .arguments({
+      name: a.string(),
+    })
+    .returns(a.string())
+    .handler(a.handler.function(testMessage))
     .authorization((allow) => [allow.guest()]),
 });
 
