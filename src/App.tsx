@@ -18,6 +18,7 @@ function App() {
       return; //don't update yet
     }
 
+    setTodos([]);
     const isLogin = authStatus === 'authenticated';
     console.log('LOGIN', isLogin);
     setLoggedIn(isLogin);

@@ -12,7 +12,7 @@ const schema = a.schema({
     .model({
       content: a.string(),
     })
-    .authorization((allow) => [allow.guest(), allow.group('User'), allow.group('Admin')]),
+    .authorization((allow) => [allow.authenticated()]),
   //Test message function
   testMessage: a
     .query()
