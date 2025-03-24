@@ -12,7 +12,7 @@ const schema = a.schema({
     .model({
       content: a.string(),
     })
-    .authorization((allow) => [allow.guest(), allow.authenticated()]),
+    .authorization((allow) => [allow.guest(), allow.group('User'), allow.group('Admin')]),
   //Test message function
   testMessage: a
     .query()
@@ -21,7 +21,7 @@ const schema = a.schema({
     })
     .returns(a.string())
     .handler(a.handler.function(testMessage))
-    .authorization((allow) => [allow.guest(), allow.authenticated()]),
+    .authorization((allow) => [allow.guest(), allow.group('User'), allow.group('Admin')]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

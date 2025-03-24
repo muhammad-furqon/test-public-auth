@@ -59,6 +59,8 @@ function App() {
   //Function testMessage
   async function handleSignOut() {
     signOut();
+    setTodos([]);
+    setLoggedIn(false);
     navigate('/');
   };
 
